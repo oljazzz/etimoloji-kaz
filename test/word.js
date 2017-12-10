@@ -48,7 +48,7 @@ describe('Words', () => {
         it('it should POST a word', (done) => {
             let word = {
                 title: "Абжылан",
-                description: "Үлкен жылан"
+                description: ["Үлкен жылан", "Үлкен жылан1", "Үлкен жылан2"]
             }
             chai.request(server)
                 .post('/word')
@@ -59,6 +59,7 @@ describe('Words', () => {
                     res.body.should.have.property('message').eql('Word added!');
                     res.body.word.should.have.property('title');
                     res.body.word.should.have.property('description');
+                    res.body.word.should.have.property('description').be.a('array');
                     done();
                 });
         });
@@ -68,7 +69,7 @@ describe('Words', () => {
         it('it should GET a word by given id', (done) => {
             let word = new Word({
                 title: "Ағайын",
-                description: "Туыстық қарым қатынастағы ер адамдар"
+                description: ["Туыстық қарым қатынастағы ер адамдар", "testet","test"]
             });
             word.save((err, word) => {
                 chai.request(server)
@@ -89,7 +90,7 @@ describe('Words', () => {
         it('it should UPDATE a word given the id', (done) => {
             let word = new Word({
                 title: "Аға",
-                description: "Desc of current word"
+                description: ["Desc of current word", "test1", "test2"]
             });
             word.save((err, word) => {
                 chai.request(server)
@@ -97,13 +98,15 @@ describe('Words', () => {
                     .send(
                     {
                         title: "Аға",
-                        description: "Modified Desc of current word"
+                        description: ["Modified Desc of current word", "test2", "test3"]
                     })
                     .end((err, res) => {
                         res.should.have.status(200);
                         res.body.should.be.a('object');
                         res.body.should.have.property('message').eql('Word updated!');
-                        res.body.word.should.have.property('description').eql("Modified Desc of current word");
+                        res.body.word.should.have.property('title').eql("Аға");
+                        res.body.word.should.have.property('description').be.a('array');
+                        
                         done();
                     });
             });
