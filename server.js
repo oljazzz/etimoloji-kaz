@@ -5,7 +5,7 @@ let morgan = require('morgan');
 let bodyParser = require('body-parser');
 let port = 8080;
 
-let word = require('./controllers/routes/word');
+let word = require('./app/routes/word');
 let config = require('config');
 let options = {
     server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
