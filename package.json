@@ -1,7 +1,7 @@
 {
-  "name": "bookstore",
+  "name": "kacgari-api",
   "version": "1.0.0",
-  "description": "a bookstore api",
+  "description": "a kacgari api is etimoloji dictionary of kazakh words",
   "main": "server.js",
   "directories": {
     "test": "test"
@@ -10,7 +10,7 @@
     "test": "mocha --timeout 10000",
     "start": "set NODE_ENV=dev && node server.js"
   },
-  "author": "",
+  "author": "oljazzz362@gmail.com",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
