@@ -14,7 +14,7 @@ describe('Words', () => {
             done();
         });
     });
-    
+
     describe('/GET word', () => {
         it('it should GET all words', (done) => {
             chai.request(server)
@@ -48,7 +48,28 @@ describe('Words', () => {
         it('it should POST a word', (done) => {
             let word = {
                 title: "Абжылан",
-                description: ["Үлкен жылан", "Үлкен жылан1", "Үлкен жылан2"]
+                description: ["Кейбір зерттеушілер абжылан - \"су жылан\", аб парсынынң \"су\" дегені" +
+                    "деп түсіндіреді", "Үлкен жылан1", "Үлкен жылан2"],
+                wordRoots: [{
+                    text: "Омбыны алдық деген хабар келген соң, төңкеріс дұшпандары апжыланша ысқырып шықты",
+                    book: {
+                        title: null,
+                        author: "C.Сейфуллин",
+                        year: null
+                    },
+                    isOldestRoot: false
+                },
+                {
+                    text: "Бір қыз кетіп барады Алтынды қамшы қолға алып Абжыландай толғанып,"
+                        + "Бұралып кетіп барады жын соққандай теңселіп",
+                    book: {
+                        title: "Қыз Жібек",
+                        author: "",
+                        year: null
+                    },
+                    isOldestRoot: false
+                }
+                ]
             }
             chai.request(server)
                 .post('/word')
@@ -60,6 +81,8 @@ describe('Words', () => {
                     res.body.word.should.have.property('title');
                     res.body.word.should.have.property('description');
                     res.body.word.should.have.property('description').be.a('array');
+                    res.body.word.should.have.property('wordRoots').be.a('array').length(2);
+                    res.body.word.should.have.property('wordRoots').length(2);    
                     done();
                 });
         });
@@ -69,7 +92,7 @@ describe('Words', () => {
         it('it should GET a word by given id', (done) => {
             let word = new Word({
                 title: "Ағайын",
-                description: ["Туыстық қарым қатынастағы ер адамдар", "testet","test"]
+                description: ["Туыстық қарым қатынастағы ер адамдар", "testet", "test"]
             });
             word.save((err, word) => {
                 chai.request(server)
@@ -106,7 +129,7 @@ describe('Words', () => {
                         res.body.should.have.property('message').eql('Word updated!');
                         res.body.word.should.have.property('title').eql("Аға");
                         res.body.word.should.have.property('description').be.a('array');
-                        
+
                         done();
                     });
             });
