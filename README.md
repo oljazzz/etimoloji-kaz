@@ -1,10 +1,10 @@
-# Book store API
+# Kacgari API
 ## Routes:
-1. GET all books: */book*
-2. GET book by id: */book/:id*
-2. POST book: */book*
-2. PUT or UPDATE book: */book/:id*
-3. DELETE book: */book/:id*
+1. GET all words: */word*
+2. GET word by id: */word/:id*
+2. POST word: */word*
+2. PUT word: */word/:id*
+3. DELETE word: */word/:id*
 ## Getting started 
 Just clone the repo and run `npm start`
 ## Testing 
