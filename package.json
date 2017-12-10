@@ -1,0 +1,26 @@
+{
+  "name": "bookstore",
+  "version": "1.0.0",
+  "description": "a bookstore api",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --timeout 10000",
+    "start": "set NODE_ENV=dev && node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "config": "^1.28.1",
+    "express": "^4.16.2",
+    "mocha": "^4.0.1",
+    "mongoose": "^4.13.5",
+    "morgan": "^1.9.0",
+    "save-dev": "^2.0.0"
+  }
+}
